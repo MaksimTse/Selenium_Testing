@@ -19,7 +19,7 @@ namespace Selenium_Testing
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
 
-        [Test]
+        [Test, Order(1)]
         public void FirstTest()
         {
             try
@@ -49,10 +49,10 @@ namespace Selenium_Testing
                 Console.WriteLine("Error during the test" + ex.Message);
                 throw;
             }
-            
+
 
         }
-        [Test]
+        [Test, Order(2)]
         public void SecondTest()
         {
             try
@@ -107,16 +107,56 @@ namespace Selenium_Testing
                 System.Threading.Thread.Sleep(1000);
 
             }
-            
+
             catch (Exception ex)
             {
                 Console.WriteLine("Error during the test" + ex.Message);
                 throw;
             }
 
+
+        }
+        [Test, Order(3)]
+        public void MultiTest()
+        {
+            try
+            {
+                driver!.Navigate().GoToUrl("https://maksimtsepelevits22.thkit.ee/");
+
+                System.Threading.Thread.Sleep(1000);
+
+                var MenuToggElement = driver.FindElement(By.ClassName("menu-toggle"));
+                MenuToggElement.Click();
+                System.Threading.Thread.Sleep(1000);
+
+                var headerElement = driver.FindElement(By.XPath("//h3[text()='PHP tööd']"));
+                headerElement.Click();
+                System.Threading.Thread.Sleep(1000);
+
+                var MuusikaAnkeetlink = driver.FindElement(By.LinkText("PHP index"));
+                MuusikaAnkeetlink.Click();
+                System.Threading.Thread.Sleep(1000);
+
+                var KoduLink = driver.FindElement(By.LinkText("Jooksjavõistluse"));
+                KoduLink.Click();
+                System.Threading.Thread.Sleep(1000);
+
+                var tabs = driver.WindowHandles;
+                driver.SwitchTo().Window(tabs[1]);
+
+                var LogLink = driver.FindElement(By.LinkText("Logi sisse"));
+                LogLink.Click();
+                System.Threading.Thread.Sleep(1000);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error during the test" + ex.Message);
+                throw;
+            }
         }
 
-        [TearDown]
+
+        [OneTimeTearDown]
         public void Teardown()
         {
             if (driver != null)
