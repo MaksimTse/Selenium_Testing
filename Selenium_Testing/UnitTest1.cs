@@ -11,7 +11,7 @@ namespace Selenium_Testing
     {
         private IWebDriver? driver;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
             driver = new ChromeDriver(@"C:\Users\opilane\source\repos\Selenium_Testing\Selenium_Testing\driver\");
@@ -46,7 +46,7 @@ namespace Selenium_Testing
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error during the test" + ex.Message);
+                Console.WriteLine("Error during the test " + ex.Message);
                 throw;
             }
 
@@ -110,7 +110,7 @@ namespace Selenium_Testing
 
             catch (Exception ex)
             {
-                Console.WriteLine("Error during the test" + ex.Message);
+                Console.WriteLine("Error during the test " + ex.Message);
                 throw;
             }
 
@@ -150,7 +150,7 @@ namespace Selenium_Testing
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error during the test" + ex.Message);
+                Console.WriteLine("Error during the test " + ex.Message);
                 throw;
             }
         }
